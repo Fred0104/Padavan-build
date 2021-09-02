@@ -35,7 +35,7 @@ jobs:
         cd /opt/rt-n56u/trunk
         mkdir -p /opt/images/
         sudo ./clear_tree_simple
-        fakeroot ./build_firmware_ci K2P_nano
+        fakeroot ./build_firmware /opt/rt-n56u/trunk/configs/templates/K2P_nano
         sudo mv -f images/*.trx /opt/images/
         done
     - name: Upload packages
