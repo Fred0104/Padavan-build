@@ -32,13 +32,9 @@ jobs:
         TNAME: "K2P K2P_nano"
       run: |
         cd /opt/rt-n56u/trunk 
-        if [ ! -f configs/templates/$TNAME.config ] ; then
-        echo "configs/templates/$TNAME.config not found "
-        exit 1
-        fi
         mkdir -p /opt/images/
         sudo ./clear_tree_simple
-        fakeroot ./build_firmware $TNAME
+        for m in $TNAME; do fakeroot ./build_firmware $m; \
         sudo mv -f images/*.trx /opt/images/
         done
     - name: Upload packages
