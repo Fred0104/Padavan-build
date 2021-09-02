@@ -23,18 +23,22 @@ jobs:
       run: |
         git clone --depth=1 https://github.com/hanwckf/rt-n56u.git /opt/rt-n56u
         sudo chmod 777 /opt/rt-n56u
-
     - name: Prepare toolchain
       run: |
         cd /opt/rt-n56u/toolchain-mipsel
         sh dl_toolchain.sh
     - name: Build Firmware
+      env:
+        TNAME: "K2P K2P_nano"
       run: |
-        ls /opt/rt-n56u/trunk/configs/templates/
         cd /opt/rt-n56u/trunk
+        if [ ! -f configs/templates/$TNAME.config ] ; then
+        echo "configs/templates/$TNAME.config not found "
+        exit 1
+        fi
         mkdir -p /opt/images/
         sudo ./clear_tree_simple
-        fakeroot ./build_firmware /opt/rt-n56u/trunk/configs/templates/K2P
+        fakeroot ./build_firmware $m
         sudo mv -f images/*.trx /opt/images/
         done
     - name: Upload packages
