@@ -25,6 +25,7 @@ jobs:
       run: |
         cd /opt/rt-n56u/toolchain-mipsel
         sh dl_toolchain.sh
+        mkdir -p /opt/images/
     - name: Build Firmware
       env:
         TNAME: K2P_nano
