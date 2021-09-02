@@ -27,7 +27,7 @@ jobs:
       run: sh /opt/rt-n56u/trunk/tools/shellcheck.sh
     - name: Prepare toolchain
       run: |
-        cd /opt/rt-n56u/trunk/tools/toolchain-mipsel
+        cd /opt/rt-n56u/toolchain-mipsel
         sh dl_toolchain.sh
     - name: Build Firmware
       run: |
