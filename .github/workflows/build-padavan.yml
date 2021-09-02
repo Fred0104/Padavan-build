@@ -40,9 +40,11 @@ jobs:
         sudo ./build_firmware_modify $TNAME 0
         sudo mv -f images/*.trx /opt/images/
         
-    - name: Upload packages
-      uses: actions/upload-artifact@master
-      if: always()
+    - name: Upload binaries to release
+      uses: svenstaro/upload-release-action@v1-release
       with:
-        name: Padavan-packages
-        path: /opt/images
+        repo_token: ${{ secrets.R_TOKEN }}
+        file: /opt/images/*.trx
+        tag: K2P
+        overwrite: true
+        file_glob: true
