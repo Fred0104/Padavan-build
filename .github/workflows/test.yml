@@ -2,11 +2,7 @@
 name: Build Padavan1
 
 on: 
-  release:
-    types: [published]
-  push:
-    tags:
-    - 'v*'
+  workflow_dispatch: # 手动触发
   #  branches: 
   #    - master
 #  schedule:
